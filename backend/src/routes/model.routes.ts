@@ -1,7 +1,12 @@
-import { Router } from 'express'
+import { Router } from 'express';
+import {
+  getRecentQueriesHandler,
+  runScanHandler,
+} from '../controllers/model.controller';
 
 const router = Router();
 
-router.get('/chatgpt',) // then use queryChatGpt() call back function
+router.post('/scan', runScanHandler);
+router.get('/recent-queries', getRecentQueriesHandler);
 
-export default router // Export router for imports
+export default router;

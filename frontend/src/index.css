@@ -3,7 +3,7 @@
 :root {
   font-family: 'IBM Plex Sans', sans-serif;
   color: #0c1b1f;
-  background-color: #eef3f1;
+  background-color: #d8d8d8;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,9 +20,9 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: radial-gradient(circle at 10% 10%, #dfeee8 0%, transparent 55%),
-    radial-gradient(circle at 90% 20%, #dce5f6 0%, transparent 50%),
-    linear-gradient(140deg, #f7f4ef 0%, #edf2f2 60%, #e7eff1 100%);
+  background: radial-gradient(circle at 12% 12%, #efefef 0%, transparent 45%),
+    radial-gradient(circle at 88% 16%, #e8e8e8 0%, transparent 48%),
+    linear-gradient(145deg, #d7d7d7 0%, #cecece 100%);
   color: inherit;
 }
 

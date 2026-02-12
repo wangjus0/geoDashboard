@@ -4,13 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const path_1 = __importDefault(require("path"));
+const cors_1 = __importDefault(require("cors"));
+const env_1 = require("./config/env");
+const model_routes_1 = __importDefault(require("./routes/model.routes"));
 const app = (0, express_1.default)();
-const PORT = process.env.PORT || 3000;
-app.use(express_1.default.json()); // Middleware
-app.get('/', (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, 'index.html'));
+app.use((0, cors_1.default)());
+app.use(express_1.default.json());
+app.get('/health', (_req, res) => {
+    res.status(200).json({ status: 'ok' });
 });
-app.listen(PORT, () => {
-    console.log('Server running');
+app.use('/api/models', model_routes_1.default);
+app.listen(env_1.env.port, () => {
+    console.log(`Backend listening on http://localhost:${env_1.env.port}`);
 });

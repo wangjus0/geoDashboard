@@ -1,18 +1,19 @@
 import express from 'express';
-import path from 'path';
-import { modelRoutes } from './routes/model.routes';
+import cors from 'cors';
+import { env } from './config/env';
+import modelRoutes from './routes/model.routes';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.use(express.json()) // Middleware
+app.use(cors());
+app.use(express.json());
 
-app.get('/', (req, res) => { // Serve index.html
-  res.sendFile(path.join(__dirname, 'index.html'));
+app.get('/health', (_req, res) => {
+  res.status(200).json({ status: 'ok' });
 });
 
-app.use('/query', modelRoutes); // Send to model router
+app.use('/api/models', modelRoutes);
 
-app.listen(PORT, () => { // Listen for port
-  console.log('Server running');
-})
+app.listen(env.port, () => {
+  console.log(`Backend listening on http://localhost:${env.port}`);
+});
