@@ -1,19 +1,12 @@
-import express from 'express';
-import cors from 'cors';
 import { env } from './config/env';
-import modelRoutes from './routes/model.routes';
+import { createApp } from './app';
 
-const app = express();
+const app = createApp();
 
-app.use(cors());
-app.use(express.json());
+if (!process.env.VERCEL) {
+  app.listen(env.port, () => {
+    console.log(`Backend listening on http://localhost:${env.port}`);
+  });
+}
 
-app.get('/health', (_req, res) => {
-  res.status(200).json({ status: 'ok' });
-});
-
-app.use('/api/models', modelRoutes);
-
-app.listen(env.port, () => {
-  console.log(`Backend listening on http://localhost:${env.port}`);
-});
+export default app;

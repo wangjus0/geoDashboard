@@ -13,4 +13,5 @@ exports.env = {
     openaiApiKey: process.env.OPENAI_API_KEY || '',
     anthropicApiKey: process.env.ANTHROPIC_API_KEY || '',
     geminiApiKey: process.env.GEMINI_API_KEY || '',
+    databaseUrl: process.env.DATABASE_URL || '',
 };

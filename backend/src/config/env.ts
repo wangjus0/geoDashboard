@@ -1,6 +1,14 @@
 import dotenv from 'dotenv';
+import path from 'path';
 
-dotenv.config();
+const envPaths = [
+  path.resolve(process.cwd(), '.env'),
+  path.resolve(process.cwd(), 'backend/.env'),
+];
+
+for (const envPath of envPaths) {
+  dotenv.config({ path: envPath });
+}
 
 const fallbackCompany = 'Ark Marketing';
 
@@ -10,4 +18,5 @@ export const env = {
   openaiApiKey: process.env.OPENAI_API_KEY || '',
   anthropicApiKey: process.env.ANTHROPIC_API_KEY || '',
   geminiApiKey: process.env.GEMINI_API_KEY || '',
+  databaseUrl: process.env.DATABASE_URL || '',
 };

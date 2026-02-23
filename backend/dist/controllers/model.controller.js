@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRecentQueriesHandler = exports.runScanHandler = void 0;
+exports.getOverallProgressHandler = exports.getRecentQueriesHandler = exports.runScanHandler = void 0;
 const queryStore_service_1 = require("../services/queryStore.service");
 const scan_service_1 = require("../services/scan.service");
 const models_1 = require("../types/models");
@@ -54,3 +54,8 @@ const getRecentQueriesHandler = async (req, res) => {
     });
 };
 exports.getRecentQueriesHandler = getRecentQueriesHandler;
+const getOverallProgressHandler = async (_req, res) => {
+    const summary = await (0, queryStore_service_1.getOverallProgressSummary)();
+    res.status(200).json(summary);
+};
+exports.getOverallProgressHandler = getOverallProgressHandler;
