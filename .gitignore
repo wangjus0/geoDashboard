@@ -6,3 +6,5 @@ backend/dist/
 .env
 **/.env
 backend/.env
+backend/data/query-store.json
+data/query-store.json
