@@ -1,6 +1,6 @@
-import { env } from '../config/env';
-import { ModelScanResult, SupportedModel, supportedModels } from '../types/models';
-import { queryModel } from './aiProviders.service';
+import { env } from '../config/env.js';
+import { ModelScanResult, SupportedModel, supportedModels } from '../types/models.js';
+import { queryModel } from './aiProviders.service.js';
 
 const extractRank = (text: string, companyName: string): number | null => {
   const normalized = text.toLowerCase();

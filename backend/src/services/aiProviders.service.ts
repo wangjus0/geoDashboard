@@ -1,5 +1,5 @@
-import { env } from '../config/env';
-import { SupportedModel } from '../types/models';
+import { env } from '../config/env.js';
+import { SupportedModel } from '../types/models.js';
 
 const MODEL_LABELS: Record<SupportedModel, string> = {
   chatgpt: 'ChatGPT',
@@ -70,7 +70,7 @@ const callAnthropic = async (query: string): Promise<string> => {
 };
 
 const callGemini = async (query: string): Promise<string> => {
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.geminiApiKey}`;
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${env.geminiApiKey}`;
   const response = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -103,6 +103,10 @@ const mockAnswer = (model: SupportedModel, query: string): string => {
 };
 
 export const queryModel = async (model: SupportedModel, query: string): Promise<string> => {
+  if (env.modelScanMode === 'mock') {
+    return mockAnswer(model, query);
+  }
+
   const hasApiKey = Boolean(getApiKey(model));
   if (!hasApiKey) {
     return mockAnswer(model, query);

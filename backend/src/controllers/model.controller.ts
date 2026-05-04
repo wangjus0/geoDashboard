@@ -3,9 +3,9 @@ import {
   getOverallProgressSummary,
   getRecentQueriesPage,
   saveQueryResult,
-} from '../services/queryStore.service';
-import { runModelScan } from '../services/scan.service';
-import { ScanRequestBody, supportedModels } from '../types/models';
+} from '../services/queryStore.service.js';
+import { runModelScan } from '../services/scan.service.js';
+import { ScanRequestBody, supportedModels } from '../types/models.js';
 
 const buildQueryId = (): string =>
   `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;

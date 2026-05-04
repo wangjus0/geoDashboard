@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.queryModel = void 0;
-const env_1 = require("../config/env");
+const env_js_1 = require("../config/env.js");
 const MODEL_LABELS = {
     chatgpt: 'ChatGPT',
     claude: 'Claude',
@@ -9,10 +9,10 @@ const MODEL_LABELS = {
 };
 const getApiKey = (model) => {
     if (model === 'chatgpt')
-        return env_1.env.openaiApiKey;
+        return env_js_1.env.openaiApiKey;
     if (model === 'claude')
-        return env_1.env.anthropicApiKey;
-    return env_1.env.geminiApiKey;
+        return env_js_1.env.anthropicApiKey;
+    return env_js_1.env.geminiApiKey;
 };
 const buildPrompt = (query) => `Answer the search intent: "${query}". Keep response to about 80 words and include notable companies if relevant.`;
 const callOpenAI = async (query) => {
@@ -20,7 +20,7 @@ const callOpenAI = async (query) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${env_1.env.openaiApiKey}`,
+            Authorization: `Bearer ${env_js_1.env.openaiApiKey}`,
         },
         body: JSON.stringify({
             model: 'gpt-4o-mini',
@@ -39,7 +39,7 @@ const callAnthropic = async (query) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'x-api-key': env_1.env.anthropicApiKey,
+            'x-api-key': env_js_1.env.anthropicApiKey,
             'anthropic-version': '2023-06-01',
         },
         body: JSON.stringify({
@@ -57,7 +57,7 @@ const callAnthropic = async (query) => {
     return textBlock?.text?.trim() || '';
 };
 const callGemini = async (query) => {
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env_1.env.geminiApiKey}`;
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${env_js_1.env.geminiApiKey}`;
     const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -73,7 +73,7 @@ const callGemini = async (query) => {
     return data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '';
 };
 const mockAnswer = (model, query) => {
-    const company = env_1.env.companyName;
+    const company = env_js_1.env.companyName;
     const containsMediaIntent = /(media|marketing|agency|solutions)/i.test(query);
     if (!containsMediaIntent) {
         return `${MODEL_LABELS[model]} response: Here are general options for ${query} with no specific provider ranking.`;
@@ -81,6 +81,9 @@ const mockAnswer = (model, query) => {
     return `${MODEL_LABELS[model]} response: Top recommendations include ${company}, Brightline Creative, and Coastal Media Labs for this intent.`;
 };
 const queryModel = async (model, query) => {
+    if (env_js_1.env.modelScanMode === 'mock') {
+        return mockAnswer(model, query);
+    }
     const hasApiKey = Boolean(getApiKey(model));
     if (!hasApiKey) {
         return mockAnswer(model, query);

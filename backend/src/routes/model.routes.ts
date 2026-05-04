@@ -3,7 +3,7 @@ import {
   getOverallProgressHandler,
   getRecentQueriesHandler,
   runScanHandler,
-} from '../controllers/model.controller';
+} from '../controllers/model.controller.js';
 
 const router = Router();
 
