@@ -4,34 +4,13 @@
   <h1>Ark Dashboard</h1>
   <h3>Daily AI visibility tracking for Ark Marketing.</h3>
   <p>
-    <img src="https://img.shields.io/badge/frontend-React-61dafb" alt="React" />
-    <img src="https://img.shields.io/badge/backend-Express-111827" alt="Express" />
-    <img src="https://img.shields.io/badge/database-Supabase-3ecf8e" alt="Supabase" />
-    <img src="https://img.shields.io/badge/deploy-Vercel-000000" alt="Vercel" />
+    <img src="https://img.shields.io/github/actions/workflow/status/wangjus0/geoDashboard/ci.yml?branch=main&label=build" alt="Build" />
+    <img src="https://img.shields.io/github/actions/workflow/status/wangjus0/geoDashboard/test.yml?branch=main&label=tests" alt="Tests" />
+    <img src="https://img.shields.io/github/license/wangjus0/geoDashboard?cacheSeconds=300" alt="License" />
   </p>
 </div>
 
-Ark Dashboard tracks Ark Marketing visibility across ChatGPT, Claude, and Gemini.
-
 For auth, database, prompt pool, cron, deployment, and validation details, read the [operations guide](./docs/operations.md).
-
-## Run Locally
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the frontend and backend in separate terminals:
-
-```bash
-npm run dev
-npm run dev:api
-```
-
-The frontend runs on `http://localhost:5173`.
-The backend runs on `http://localhost:3000`.
 
 ## Environment Variables
 
@@ -67,4 +46,19 @@ For local mock mode without Supabase or model-provider calls:
 ```bash
 QUERY_STORE_DRIVER=local
 MODEL_SCAN_MODE=mock
+```
+
+## Run Locally
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the frontend and backend in separate terminals:
+
+```bash
+npm run dev
+npm run dev:api
 ```
