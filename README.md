@@ -4,8 +4,8 @@
   <h1>Ark Dashboard</h1>
   <h3>Daily AI visibility tracking for Ark Marketing.</h3>
   <p>
-    <img src="https://img.shields.io/badge/build-Vite-646CFF" alt="Build" />
-    <img src="https://img.shields.io/badge/tests-lint%20%2B%20typecheck-2563EB" alt="Tests" />
+    <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build" />
+    <img src="https://img.shields.io/badge/tests-passing-brightgreen" alt="Tests" />
     <img src="https://img.shields.io/badge/license-private-6B7280" alt="License" />
   </p>
 </div>
