@@ -4,13 +4,11 @@
   <h1>Ark Dashboard</h1>
   <h3>Daily AI visibility tracking for Ark Marketing.</h3>
   <p>
-    <img src="https://img.shields.io/github/actions/workflow/status/wangjus0/geoDashboard/ci.yml?branch=main&label=build" alt="Build" />
-    <img src="https://img.shields.io/github/actions/workflow/status/wangjus0/geoDashboard/test.yml?branch=main&label=tests" alt="Tests" />
-    <img src="https://img.shields.io/github/license/wangjus0/geoDashboard?cacheSeconds=300" alt="License" />
+    <img src="https://img.shields.io/badge/build-Vite-646CFF" alt="Build" />
+    <img src="https://img.shields.io/badge/tests-lint%20%2B%20typecheck-2563EB" alt="Tests" />
+    <img src="https://img.shields.io/badge/license-private-6B7280" alt="License" />
   </p>
 </div>
-
-For auth, database, prompt pool, cron, deployment, and validation details, read the [operations guide](./docs/operations.md).
 
 ## Environment Variables
 
@@ -62,3 +60,5 @@ Start the frontend and backend in separate terminals:
 npm run dev
 npm run dev:api
 ```
+
+For auth, database, prompt pool, cron, deployment, and validation details, read the [operations guide](./docs/operations.md).
