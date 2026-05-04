@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <img src="./public/Ark-Marketing-Logo-Color-Registered-Trademark.webp" alt="Ark Marketing logo" width="220" />
+  <img src="./public/Ark-Marketing-Logo-Color-Registered-Trademark.webp" alt="Ark Marketing logo" width="250" />
   <h1>Ark Dashboard</h1>
   <h3>Daily AI visibility tracking for Ark Marketing.</h3>
   <p>
