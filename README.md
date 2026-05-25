@@ -10,43 +10,31 @@
   </p>
 </div>
 
-## Environment Variables
+## Features
 
-Use `backend/.env.example` as the starting point.
+- Runs ad hoc prompt scans across ChatGPT, Claude, and Gemini.
+- Tracks daily visibility for the active San Diego media-buying prompt pool.
+- Stores scan history, prompt pools, tracking runs, and access users in Supabase.
+- Supports Supabase Azure OAuth in production with email-code and magic-link rollback modes.
+- Provides admin-controlled dashboard access through allowlisted users and domains.
 
-```bash
-PORT=3000
-COMPANY_NAME=Ark Marketing
-SESSION_SECRET=
-CORS_ORIGINS=http://localhost:5173
-PUBLIC_APP_URL=http://localhost:5173
+## Stack
 
-AUTH_METHOD=azure_oauth
-ALLOWED_EMAIL_DOMAINS=arkmarketing.com,arcmarketing.com
-DASHBOARD_ADMIN_EMAILS=audrey@arkmarketing.com
+- TypeScript
+- Vite + React
+- Express
+- Supabase Auth + Postgres
+- OpenAI, Anthropic, and Gemini APIs
+- Vercel Serverless Functions + Cron
 
-SUPABASE_URL=https://usgsllxucjzmksnsdnfy.supabase.co
-SUPABASE_PUBLISHABLE_KEY=
-DATABASE_URL=
+## Quickstart
 
-QUERY_STORE_DRIVER=postgres
-MODEL_SCAN_MODE=live
-OPENAI_API_KEY=
-ANTHROPIC_API_KEY=
-GEMINI_API_KEY=
-
-CRON_SECRET=
-DAILY_TRACKING_PROMPT_LIMIT=25
-```
-
-For local mock mode without Supabase or model-provider calls:
+Clone the project:
 
 ```bash
-QUERY_STORE_DRIVER=local
-MODEL_SCAN_MODE=mock
+git clone https://github.com/wangjus0/geoDashboard.git
+cd geoDashboard
 ```
-
-## Run Locally
 
 Install dependencies:
 
@@ -54,11 +42,48 @@ Install dependencies:
 npm install
 ```
 
-Start the frontend and backend in separate terminals:
+Copy the example environment file:
+
+```bash
+cp backend/.env.example .env
+```
+
+Reference the maintainer guide to get the environment variables:
+
+[Environment Variables Guide](docs/Documentation.md#deployment)
+
+For local mock mode without Supabase or model-provider calls, set:
+
+```bash
+QUERY_STORE_DRIVER=local
+MODEL_SCAN_MODE=mock
+```
+
+Run the app locally:
 
 ```bash
 npm run dev
-npm run dev:api
 ```
 
-For auth, database, prompt pool, cron, deployment, and validation details, read the [operations guide](./docs/operations.md).
+## Validation
+
+Run the local checks before handoff:
+
+```bash
+npm run lint
+npx tsc -p tsconfig.json --noEmit
+npx tsc -p backend/tsconfig.json --noEmit
+npm run build
+npm run build:api
+```
+
+With the backend running, check readiness:
+
+```bash
+curl -sS http://localhost:3000/health
+```
+
+## Documentation
+
+- [User Guide](https://docs.google.com/document/d/1J3tnASbRyQmpvElElo42i50nMQnGabt7d9zyQ84_3kc/edit?usp=sharing)
+- [Tech Documentation](docs/Documentation.md)
